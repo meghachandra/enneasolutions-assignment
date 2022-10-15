@@ -4,48 +4,53 @@ var free = 0;
 var maxMrp = 0;
 var maxRate = 0;
 var near = 0;
+var date;
 
 function aggregateByName() {
   var sname = $("#sname").val();
-  for (var i = 0; i < jsonData.length; i++) {
-    if (jsonData[i]['name'] === sname) {
+  if (sname != '') {
+    for (var i = 0; i < jsonData.length; i++) {
+      if (jsonData[i]['name'] === sname) {
 
-      if (jsonData[i]['stock'] != 'undefined') {
-        sum = sum + parseInt(jsonData[i]['stock']);
-      }
-      if (jsonData[i]['deal'] != 'undefined') {
-        deal = jsonData[i]['deal'];
-      }
-      if (jsonData[i]['free'] != 'undefined') {
-        var free = jsonData[i]['free'];
-      }
-      if (jsonData[i]['mrp'] != 'undefined') {
-
-        var mrp = parseFloat(jsonData[i]['mrp']);
-        if (maxMrp > mrp) {
-          maxMrp = mrp;
+        if (jsonData[i]['stock'] != 'undefined') {
+          sum = sum + parseInt(jsonData[i]['stock']);
         }
-      }
-      if (jsonData[i]['rate'] != 'undefined') {
-
-        var rate = parseFloat(jsonData[i]['raet']);
-        if (maxRate < rate) {
-          maxRate = rate;
+        if (jsonData[i]['deal'] != 'undefined') {
+          deal = jsonData[i]['deal'];
         }
-      }
-      if (jsonData[i]['exp'] != 'undefined') {
-        var exp = jsonData[i]['exp'];
-        var myDate = new Date(exp);
-        var result = myDate.getTime();
-        if (near < result) {
-          near = result;
-          const date = new Date(near);
+        if (jsonData[i]['free'] != 'undefined') {
+          var free = jsonData[i]['free'];
+        }
+        if (jsonData[i]['mrp'] != 'undefined') {
+
+          var mrp = parseFloat(jsonData[i]['mrp']);
+          if (maxMrp < mrp) {
+            maxMrp = mrp;
+          }
+        }
+        if (jsonData[i]['rate'] != 'undefined') {
+
+          var rate = parseFloat(jsonData[i]['rate']);
+          if (maxRate < rate) {
+            maxRate = rate;
+          }
+        }
+        if (jsonData[i]['exp'] != 'undefined') {
+          var exp = jsonData[i]['exp'];
+          var myDate = new Date(exp);
+          var result = myDate.getTime();
+          if (near < result) {
+            near = result;
+            date = new Date(near);
+          }
         }
       }
     }
+    $(".aggTable").show();
+    $(".aggMetrics").show();
+    aggregateTable();
+    metrics();
   }
-  aggregateTable();
-  metrics();
 }
 
 function aggregateTable() {
@@ -69,7 +74,7 @@ function aggregateTable() {
     htmlBody += '<td>' + free + '</td>';
     htmlBody += '<td>' + maxMrp + '</td>';
     htmlBody += '<td>' + maxRate + '</td>';
-    htmlBody += '<td>' + near + '</td>';
+    htmlBody += '<td>' + date + '</td>';
   }
   htmlBody += '</tr>';
   htmlBody += '</tbody>';

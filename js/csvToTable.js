@@ -11,7 +11,12 @@ function upload() {
   var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
   if (extension == '.CSV') {
     $("#csvtable").html('');
+    $("#aggregateTable").html('');
+    $(".aggTable").hide();
+    $(".aggMetrics").hide();
     csvToJSON(files[0]);
+    $("#sname").val('');
+    $("#fileUpload").val('');
   } else {
     alert("Please select a valid CSV file.");
   }
@@ -84,6 +89,7 @@ function jsonToTable(jsonData) {
   $("#sbox").show();
   tables = $("#csvtable").DataTable();
   $("#csvtable_filter").hide();
+  $(".aggSearch").show();
 }
 
 function Search() {

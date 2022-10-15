@@ -22,9 +22,9 @@
   <div class="container">
     <h3>Upload a CSV file </h3>
     <div class="mb-3">
-      <input class="form-control" type="file" id="fileUpload" style="width:50%;">
+      <input class="form-control" type="file" id="fileUpload" style="width:47%;">
     </div>
-    <button type="button" class="btn btn-outline-primary" title="upload a file" onclick="upload();">Upload</button>
+    <button type="button" class="btn btn-outline-primary" title="upload a file" onclick="upload();" style="margin-left: 48%;  margin-top: -99px;">Upload</button>
     <br>
     <br>
     <div class="input-group" id="sbox" style="width: 187px;left: 85%;display:none;">
@@ -35,12 +35,25 @@
         </svg></button>
     </div>
     <br>
-
     <table id="csvtable" class="table table-striped table-bordered" style="width:100%"></table>
-    <input type="text" id="sname" title="Type a name">
-    <button type="button" class="btn btn-outline-primary" onclick="aggregateByName();">Aggregate</button>
-    <table class="table table-bordered table-striped" id="aggregateTable"></table>
-    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <br>
+    <br>
+    <div class="aggSearch" style="display:none;">
+      <input type="text" class="form-control" id="sname" placeholder="Type a name " title="Type a name" style="width: 159px;">
+      <button type="button" class="btn btn-primary mb-3" onclick="aggregateByName();" style="margin-left: 171px;margin-top: -50px;">Aggregate</button>
+    </div>
+    <br>
+    <br>
+    <div class="aggTable" style="display:none;">
+      <h4 style="text-align:center;">Aggregate Table</h4>
+      <table class="table table-bordered table-striped" id="aggregateTable"></table>
+    </div>
+    <br>
+    <br>
+    <div class="aggMetrics"style="display:none;">
+      <h4 style="text-align:center;">Aggregate Table Chart</h4>
+      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </div>
   </div>
 </body>
 
